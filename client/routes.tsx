@@ -3,10 +3,11 @@ import { createRoutesFromElements, Route } from 'react-router'
 
 import Layout from './components/Layout'
 import App from './components/App'
+import Home from './components/Home'
 
 const routes = createRoutesFromElements(
   <Route path="/" element={<Layout />}>
-    <Route index element={<App />} />
+    <Route index element={<Home />} />
   </Route>,
 )
 
