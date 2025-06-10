@@ -1,10 +1,10 @@
-export interface Product {
+export interface ProductData {
   name: string
   imgUrl: string
   price: number
   description: string
 }
 
-export interface ProductData extends Product {
+export interface Product extends ProductData {
   id: number
 }
