@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import HomeProductCard from './HomeProductCard'
-import { exampleData } from './exampleData'
 import { Link } from 'react-router'
 import { useQuery } from '@tanstack/react-query'
 import { getProducts } from '../apis/products'
@@ -8,7 +7,6 @@ import { getProducts } from '../apis/products'
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null)
   const scrollAmount = 100
-  const exampleArr = Array(20).fill(null)
 
   const query = useQuery({
     queryKey: ['product'],
