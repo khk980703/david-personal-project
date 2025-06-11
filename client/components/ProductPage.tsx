@@ -1,3 +1,85 @@
+import { useRef } from 'react'
+import { useParams } from 'react-router'
+import { useQuery } from '@tanstack/react-query'
+import { getProductById } from '../apis/products'
+
 export default function ProductPage() {
-  return <div>This is ProductPage</div>
+  const { id } = useParams()
+
+  const containerRef = useRef<HTMLDivElement>(null)
+  const scrollAmount = 100
+
+  const query = useQuery({
+    queryKey: ['product', id],
+    queryFn: () => getProductById(Number(id)),
+  })
+
+  const { data: product, isPending, isError } = query
+
+  if (isPending) <p>Loading...</p>
+  if (isError) <>Error.</>
+
+  return (
+    <div className="main-page">
+      <p>Tired of running outside?</p>
+
+      <div className="home-container">
+        <button
+          className="arrow-btn btn-up"
+          onClick={() => {
+            containerRef.current?.scrollBy({
+              top: -scrollAmount,
+              behavior: 'smooth',
+            })
+          }}
+        >
+          ⬆︎
+        </button>
+        <div
+          ref={containerRef}
+          className="container-inside"
+          style={{ border: '#2f2f2f 5px solid' }}
+        >
+          <div className="product-page">
+            <h1>{product?.name}</h1>
+            <img
+              src={product?.imgUrl}
+              alt="treadmill example"
+              className="example-image"
+              style={{ width: '500px' }}
+            />
+            <p style={{ width: '80%' }}>{product?.description}</p>
+            <p>$ {product?.price}</p>
+            <div>
+              ___________________________________________________________________________________________________________________
+            </div>
+            <p style={{ marginBottom: '700px' }}>More details below..</p>
+            <div>
+              ___________________________________________________________________________________________________________________
+            </div>
+            <p style={{ marginBottom: '700px' }}>Even more details below..</p>
+            <div>
+              ___________________________________________________________________________________________________________________
+            </div>
+            <p style={{ marginBottom: '300px' }}>To be continued...</p>
+          </div>
+        </div>
+        <button
+          className="arrow-btn btn-down"
+          onClick={() => {
+            containerRef.current?.scrollBy({
+              top: scrollAmount,
+              behavior: 'smooth',
+            })
+          }}
+        >
+          ⬇︎
+        </button>
+      </div>
+      <div className="buttons">
+        <button className="btn-3d green">Go</button>
+        <button className="btn-3d red">Stop</button>
+      </div>
+    </div>
+  )
 }
