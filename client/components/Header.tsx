@@ -1,6 +1,18 @@
+import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router'
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 export default function Header() {
+  const { logout, loginWithRedirect, user } = useAuth0()
+
+  const handleSignOut = () => {
+    logout()
+  }
+
+  const handleSignIn = () => {
+    loginWithRedirect()
+  }
+
   return (
     <header>
       <Link to={'/'}>
@@ -16,7 +28,17 @@ export default function Header() {
           />
         </div>
       </Link>
-      <button>Log In</button>
+      <IfAuthenticated>
+        <button onClick={handleSignOut}>Log Out</button>
+        {user && (
+          <p style={{ position: 'absolute', left: '65%' }}>
+            Signed in as: {user?.nickname}
+          </p>
+        )}
+      </IfAuthenticated>
+      <IfNotAuthenticated>
+        <button onClick={handleSignIn}>Log In</button>
+      </IfNotAuthenticated>
     </header>
   )
 }
