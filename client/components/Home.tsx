@@ -23,17 +23,25 @@ export default function Home() {
       <p>Tired of running outside?</p>
 
       <div className="home-container">
-        <button
-          className="arrow-btn btn-up"
-          onClick={() => {
-            containerRef.current?.scrollBy({
-              top: -scrollAmount,
-              behavior: 'smooth',
-            })
-          }}
-        >
-          ⬆︎
-        </button>
+        <div className="home-page-side">
+          <Link to={'/'}>
+            <button className="treadmill-button">
+              <img src="/images/home-icon.png" alt="home icon" />
+            </button>
+          </Link>
+          <button
+            className="arrow-btn btn-up"
+            onClick={() => {
+              containerRef.current?.scrollBy({
+                top: -scrollAmount,
+                behavior: 'smooth',
+              })
+            }}
+          >
+            ⬆︎
+          </button>
+        </div>
+
         <div ref={containerRef} className="container-inside">
           {data?.map((e, i) => (
             <Link key={i} to={`/product/${e.id}`}>
@@ -41,17 +49,25 @@ export default function Home() {
             </Link>
           ))}
         </div>
-        <button
-          className="arrow-btn btn-down"
-          onClick={() => {
-            containerRef.current?.scrollBy({
-              top: scrollAmount,
-              behavior: 'smooth',
-            })
-          }}
-        >
-          ⬇︎
-        </button>
+
+        <div className="home-page-side">
+          <Link to={'/cart'}>
+            <button className="treadmill-button">
+              <img src="/images/cart-icon.png" alt="cart icon" />
+            </button>
+          </Link>
+          <button
+            className="arrow-btn btn-down"
+            onClick={() => {
+              containerRef.current?.scrollBy({
+                top: scrollAmount,
+                behavior: 'smooth',
+              })
+            }}
+          >
+            ⬇︎
+          </button>
+        </div>
       </div>
       <div className="buttons">
         <button className="btn-3d green">Go</button>
