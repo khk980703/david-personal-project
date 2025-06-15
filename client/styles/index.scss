@@ -46,6 +46,20 @@ header {
     align-items: center;
     margin-left: 200px;
   }
+
+  button {
+    font-family: 'SFProDisplay', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 16px;
+    background: #1f1f1f;
+    color: rgb(108, 108, 108);
+    position: absolute;
+    left: 80%;
+    border-radius: 10px;
+    padding: 5px 10px;
+  }
 }
 
 footer {
@@ -307,5 +321,60 @@ button {
 
 .cart-page {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.each-cart-card {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto;
+  align-items: center;
+  width: 80%;
+  justify-content: space-evenly;
+  border-bottom: rgb(89, 89, 89) 2px solid;
+  padding: 30px 0;
+
+  img {
+    width: 140px;
+    height: 100px;
+  }
+}
+
+
+// Payment Page
+
+.payment-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.payment-page-container {
+  width: 1000px;
+  height: 700px;
+  border-left: rgb(61, 61, 61) 3px solid;
+  border-right: rgb(61, 61, 61) 3px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    position: absolute;
+    top: 30%;
+  }
+
+  button {
+    font-family: 'SFProDisplay', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 20px;
+    color: #032a45;
+    width: 250px;
+    height: 250px;
+    padding: 50px;
+    background: rgb(107, 138, 171);
+    border-radius: 25px;
+    margin: 50px;
+  }
 }

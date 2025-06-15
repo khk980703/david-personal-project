@@ -16,6 +16,7 @@ export default function Header() {
           />
         </div>
       </Link>
+      <button>Log In</button>
     </header>
   )
 }
