@@ -1,6 +1,6 @@
 export function up(knex) {
   return knex.schema.createTable('products', (table) => {
-    table.increments('id')
+    table.increments('id').primary()
     table.string('name')
     table.string('imgUrl')
     table.decimal('price')
@@ -9,5 +9,5 @@ export function up(knex) {
 }
 
 export function down(knex) {
-  return knex.schema.dropTable('appleProducts')
+  return knex.schema.dropTable('products')
 }

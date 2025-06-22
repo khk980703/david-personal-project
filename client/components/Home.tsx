@@ -45,7 +45,7 @@ export default function Home() {
         </div>
 
         <div className="home-page-side">
-          <Link to={`/cart/${1}`}>
+          <Link to={`/cart`}>
             <button className="treadmill-button">
               <img src="/images/cart-icon.png" alt="cart icon" />
             </button>
