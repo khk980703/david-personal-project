@@ -1,19 +1,13 @@
 import { useRef } from 'react'
 import HomeProductCard from './HomeProductCard'
 import { Link } from 'react-router'
-import { useQuery } from '@tanstack/react-query'
-import { getProducts } from '../apis/products'
+import { useProducts } from '../hooks/useProducts'
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null)
   const scrollAmount = 100
 
-  const query = useQuery({
-    queryKey: ['product'],
-    queryFn: getProducts,
-  })
-
-  const { data, isPending, isError } = query
+  const { data, isPending, isError } = useProducts()
 
   if (isPending) <p>Loading...</p>
   if (isError) <>Error.</>
@@ -51,7 +45,7 @@ export default function Home() {
         </div>
 
         <div className="home-page-side">
-          <Link to={'/cart'}>
+          <Link to={`/cart/${1}`}>
             <button className="treadmill-button">
               <img src="/images/cart-icon.png" alt="cart icon" />
             </button>

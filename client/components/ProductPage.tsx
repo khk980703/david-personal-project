@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import { Link, useParams } from 'react-router'
-import { useQuery } from '@tanstack/react-query'
-import { getProductById } from '../apis/products'
+import { useProductById } from '../hooks/useProductById'
 
 export default function ProductPage() {
   const { id } = useParams()
@@ -9,12 +8,7 @@ export default function ProductPage() {
   const containerRef = useRef<HTMLDivElement>(null)
   const scrollAmount = 100
 
-  const query = useQuery({
-    queryKey: ['product', id],
-    queryFn: () => getProductById(Number(id)),
-  })
-
-  const { data: product, isPending, isError } = query
+  const { data: product, isPending, isError } = useProductById(Number(id))
 
   if (isPending) <p>Loading...</p>
   if (isError) <>Error.</>
